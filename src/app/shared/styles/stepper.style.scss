@@ -1,0 +1,31 @@
+.stepper-text-titre {
+    color: #AD9961;
+    font-size: 1.5rem; 
+}
+
+.stepper-text-titre-icon {
+    color: #63B154 ;
+    font-size: 1.5rem;
+}
+
+:host ::ng-deep .p-stepper .p-stepper-panels {
+    background-color: #ffff;
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    margin-bottom: 16px;
+    text-align: left;
+
+}
+
+:host ::ng-deep .p-stepper-header .p-stepper-action{
+    background-color: transparent;
+    
+}
+
+:host ::ng-deep .p-button {
+    background-color: #3361AB;
+    border-color: #3361AB;
+    color: #ffff;
+}

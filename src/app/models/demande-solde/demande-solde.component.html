@@ -1,0 +1,94 @@
+<div class="card p-4">             
+    <p-stepper [(activeStep)]="active" styleClass="stepper-custom">   
+    <p-stepperPanel>
+        <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
+            <p-button icon="pi pi-phone" [rounded]="true" class="bg-transparent border-none inline-flex flex-column gap-2" (click)="onClick.emit()">
+            </p-button>
+        </ng-template>
+       <ng-template pTemplate="content" let-nextCallback="nextCallback">
+            <div class="">
+                <div class="mt-3 mb-3 text-xl font-semibold stepper-text-titre">
+                    <i class="pi pi-phone stepper-text-titre-icon"></i>   Numero de telephone
+                </div>
+                <div class="formgrid grid">
+                    <div class="field col-8">
+                        <label for="firstname2">Entrer votre numero de telephone</label>
+                        <input id="firstname2" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                    </div>    
+                </div>
+                
+            </div>
+
+            <div class="flex pt-4 justify-content-end">
+                <p-button (onClick)="nextCallback.emit()" label="Suivant" icon="pi pi-arrow-right" iconPos="right" class="p-button-rounded"></p-button>
+            </div>
+        </ng-template>
+    </p-stepperPanel> 
+
+
+    <p-stepperPanel>
+        <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
+            <p-button icon="pi pi-code" [rounded]="true" class="bg-transparent border-none inline-flex flex-column gap-2" (click)="onClick.emit()" [ngClass]="{
+                'bg-primary-button border-primary': index <= active,
+                'surface-border': index > active
+            }">
+            </p-button>
+        </ng-template>
+       <ng-template pTemplate="content" let-nextCallback="nextCallback">
+            <div class="gap-4">
+                <div class="mt-3 mb-3 text-2xl font-semibold stepper-text-titre">
+                    <i class="pi pi-code stepper-text-titre-icon"></i> Code de verification
+                </div>
+                <div class="formgrid grid">
+                    <div class="field col-8">
+                        <label for="firstname2">Entrer le code de verification</label>
+                        <input id="firstname2" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                    </div>
+
+                </div>
+                
+            </div>
+
+            <div class="flex pt-4 justify-content-end">
+                <p-button (onClick)="nextCallback.emit()" label="Suivant" icon="pi pi-arrow-right" iconPos="right" class="p-button-rounded p-button-success"></p-button>
+            </div>
+        </ng-template>
+    </p-stepperPanel> 
+
+    <p-stepperPanel>
+        <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
+            <p-button icon="pi pi-wallet" [rounded]="true" class="bg-transparent border-none inline-flex flex-column gap-2" (click)="onClick.emit()" [ngClass]="{
+                'bg-primary-button': index <= active,
+            }">
+            </p-button>
+        </ng-template>
+
+        <ng-template pTemplate="content" let-nextCallback="nextCallback">
+            <div class="flex flex-column gap-4">
+                <div class="mt-3 mb-3 text-2xl font-semibold stepper-text-titre"><i class="pi pi-wallet stepper-text-titre-icon"></i> Informations du compte</div>
+                <div class="card grid justify-content-between">
+                    <div class="md:col-5">
+                        <div class="text-md font-semibold">Informations </div>
+                        <div class="text-sm">Nom : </div>
+                        <div class="text-sm">Prénom : </div>
+                        <div class="text-sm">Téléphone : </div>
+                        <div class="text-sm">Email : </div>
+                    </div>
+                    <div class="md:col-5">
+                        <div class="text-md font-semibold">Activités professionnelles</div>
+                        <div class="text-sm">Profession : </div>
+                        <div class="text-sm">Entreprise : </div>
+                        <div class="text-sm">Revenu mensuel : </div>
+                        <div class="text-sm">Secteur d'activité : </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex pt-4 justify-content-end">
+                <p-button (onClick)="nextCallback.emit()" label="Suivant" icon="pi pi-arrow-right" iconPos="right" class="p-button-rounded p-button-success"></p-button>
+            </div>
+        </ng-template>
+    </p-stepperPanel>
+
+</p-stepper>
+</div>

@@ -1,0 +1,7 @@
+@import '../../shared/styles/stepper.style.scss';
+
+:host ::ng-deep .p-stepper .p-stepper-panels {
+    width: 70%;
+    justify-content: center;
+    margin: 0 auto;
+}
