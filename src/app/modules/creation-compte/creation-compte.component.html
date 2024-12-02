@@ -13,21 +13,21 @@
                 <div class="formgrid grid">
                     <div class="field col">
                         <label for="firstname2">Nom</label>
-                        <input id="firstname2" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <input id="firstname2" type="text" [(ngModel)]="client.nom" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                     </div>
                     <div class="field col">
                         <label for="lastname2">Prénom</label>
-                        <input id="lastname2" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <input id="lastname2" type="text" [(ngModel)]="client.prenom" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                     </div>
                 </div>
                 <div class="formgrid grid">
                     <div class="field col">
                         <label for="firstname2">Téléphone</label>
-                        <input id="firstname2" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <input id="firstname2" type="text" [(ngModel)]="client.telephone" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                     </div>
                     <div class="field col">
                         <label for="lastname2">Email</label>
-                        <input id="lastname2" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <input id="lastname2" type="text" [(ngModel)]="client.email" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
             }">
             </p-button>
         </ng-template>
-       <ng-template pTemplate="content" let-nextCallback="nextCallback">
+       <ng-template pTemplate="content" let-nextCallback="nextCallback" let-prevCallback="prevCallback">
             <div class="gap-4">
                 <div class="mt-3 mb-3 text-2xl font-semibold stepper-text-titre">
                     <i class="pi pi-briefcase stepper-text-titre-icon"></i> Activités professionnelles
@@ -55,26 +55,27 @@
                 <div class="formgrid grid">
                     <div class="field col">
                         <label for="firstname2">Profession</label>
-                        <input id="firstname2" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <input id="firstname2" type="text" [(ngModel)]="client.profession" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                     </div>
                     <div class="field col">
                         <label for="lastname2">Entreprise</label>
-                        <input id="lastname2" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <input id="lastname2" type="text" [(ngModel)]="client.entreprise" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                     </div>
                 </div>
                 <div class="formgrid grid">
                     <div class="field col">
                         <label for="firstname2">Revenu mensuel</label>
-                        <input id="firstname2" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <input id="firstname2" type="text" [(ngModel)]="client.revenuMensuel" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                     </div>
                     <div class="field col">
                         <label for="lastname2">Secteur d'activité</label>
-                        <input id="lastname2" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <input id="lastname2" type="text" [(ngModel)]="client.secteurActivite" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                     </div>
                 </div>
             </div>
 
-            <div class="flex pt-4 justify-content-end">
+            <div class="flex pt-4 gap-2 justify-content-end align-items-center">
+                <app-bouton-retour (prevCallback)="prevCallback.emit()"></app-bouton-retour>
                 <p-button (onClick)="nextCallback.emit()" label="Suivant" icon="pi pi-arrow-right" iconPos="right" class="p-button-rounded p-button-success"></p-button>
             </div>
         </ng-template>
@@ -88,29 +89,30 @@
             </p-button>
         </ng-template>
 
-        <ng-template pTemplate="content" let-nextCallback="nextCallback">
+        <ng-template pTemplate="content" let-nextCallback="nextCallback" let-prevCallback="prevCallback">
             <div class="flex flex-column gap-4">
                 <div class="mt-3 mb-3 text-2xl font-semibold stepper-text-titre"><i class="pi pi-file stepper-text-titre-icon"></i> Résumé des informations</div>
                 <div class="card grid justify-content-between">
                     <div class="md:col-5">
                         <div class="text-md font-semibold">Informations personnelles</div>
-                        <div class="text-sm">Nom : </div>
-                        <div class="text-sm">Prénom : </div>
-                        <div class="text-sm">Téléphone : </div>
-                        <div class="text-sm">Email : </div>
+                        <div class="text-sm">Nom : {{client.nom}}</div>
+                        <div class="text-sm">Prénom : {{client.prenom}}</div>
+                        <div class="text-sm">Téléphone : {{client.telephone}}</div>
+                        <div class="text-sm">Email : {{client.email}}</div>
                     </div>
                     <div class="md:col-5">
                         <div class="text-md font-semibold">Activités professionnelles</div>
-                        <div class="text-sm">Profession : </div>
-                        <div class="text-sm">Entreprise : </div>
-                        <div class="text-sm">Revenu mensuel : </div>
-                        <div class="text-sm">Secteur d'activité : </div>
+                        <div class="text-sm">Profession : {{client.profession}}</div>
+                        <div class="text-sm">Entreprise : {{client.entreprise}}</div>
+                        <div class="text-sm">Revenu mensuel : {{client.revenuMensuel}}</div>
+                        <div class="text-sm">Secteur d'activité : {{client.secteurActivite}}</div>
                     </div>
                 </div>
             </div>
 
-            <div class="flex pt-4 justify-content-end">
-                <p-button (onClick)="nextCallback.emit()" label="Suivant" icon="pi pi-arrow-right" iconPos="right" class="p-button-rounded p-button-success"></p-button>
+            <div class="flex pt-4  gap-2 justify-content-end align-items-center">
+                <app-bouton-retour (prevCallback)="prevCallback.emit()"></app-bouton-retour>
+                <p-button (onClick)="nextCallback.emit()" label="Valider" icon="pi pi-check" iconPos="right" class="p-button-rounded p-button-success"></p-button>
             </div>
         </ng-template>
     </p-stepperPanel>

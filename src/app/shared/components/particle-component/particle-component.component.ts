@@ -14,7 +14,7 @@ import {
 } from 'tsparticles-engine';
 
 @Component({
-  selector: 'app-particle-component',
+  selector: 'app-particle-composant',
   standalone: true,
   template: `
     <ng-particles
@@ -32,7 +32,7 @@ import {
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
+      z-index: -2;
     }
     .particles-container {
       position: absolute;
@@ -41,8 +41,8 @@ import {
     }
   `]
 })
-export class ParticleComponentComponent implements OnInit {
-  id = "tsparticles";
+export class ParticleComponent implements OnInit {
+  id = "tsparticles-deux";
  
   particlesOptions = {
     background: {
@@ -91,7 +91,7 @@ export class ParticleComponentComponent implements OnInit {
           default: OutMode.bounce,
         },
         random: false,
-        speed: 3  ,
+        speed: 3,
         straight: false,
       },
       number: {
@@ -122,5 +122,3 @@ export class ParticleComponentComponent implements OnInit {
     await loadFull(engine);
   }
 }
-
-

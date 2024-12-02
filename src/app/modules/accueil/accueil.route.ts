@@ -15,7 +15,7 @@ export const routes: Routes = [
         path: '',
         component: EspaceDigitalAccueilComponent
     },
-   
+
     {
         path: 'creation-compte',
         component: CreationCompteComponent

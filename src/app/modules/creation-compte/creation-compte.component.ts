@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -10,15 +9,21 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenuModule } from 'primeng/menu';
 import { StepperModule } from 'primeng/stepper';
-import { StepsModule } from 'primeng/steps';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-import { Subscription } from 'rxjs';
+
+import {
+  BoutonRetourComponent,
+} from '../../shared/components/bouton-retour/bouton-retour.component';
+import { ClientModel } from '../../shared/models/client.model';
+import {
+  CreationCompteService,
+} from '../../shared/services/creation-compte/creation-compte.service';
 
 @Component({
-  selector: 'app-demande-solde',
-  standalone: true,
+  selector: 'app-creation-compte',
+  standalone: true, 
   imports: [
-    StepsModule,
+    
     ButtonModule,
     StepperModule,
     InputTextModule,
@@ -28,26 +33,24 @@ import { Subscription } from 'rxjs';
     CommonModule,
     InputNumberModule,
     FormsModule,
-    MenuModule
-
+    MenuModule,
+    BoutonRetourComponent 
   ],
-  templateUrl: './demande-solde.component.html',
-  styleUrl: './demande-solde.component.scss'
+  templateUrl: './creation-compte.component.html',
+  styleUrl: './creation-compte.component.scss',
+  providers: [
+    CreationCompteService
+  ] ,
+
 })
-export class DemandeSoldeComponent {
-  items: MenuItem[] = [];
-  subscription: Subscription = new Subscription();
+export class CreationCompteComponent {
   active: number = 0;
+  client: ClientModel = new ClientModel();
+  creationCompteService: CreationCompteService = new CreationCompteService(this.client);
 
-  ngOnInit(): void {
-    this.items = [
-      { label: 'Numero de telephone', routerLink: 'numero-telephone' },
-      { label: 'Code de verification', routerLink: 'code-verification' },
-      { label: 'Solde', routerLink: 'solde' },  
-    ];
+  creationCompte() {
+    return this.creationCompteService.creationCompte();
   }
+ 
 
-  nextCallback() {
-    this.active++;
-  }
 }

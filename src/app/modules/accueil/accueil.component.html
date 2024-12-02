@@ -1,0 +1,22 @@
+
+<div class="landing-page">
+
+    <!-- Navbar -->
+    <!-- Hero Section -->
+    <header class="navbar">
+      <div class="logo">
+        <img src="bhci.png" alt="bhci" />
+      </div>
+      <nav>
+        <a  [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Accueil</a>
+        <a  [routerLink]="['/creation-compte']" routerLinkActive="active">Création de compte</a>
+        <a  [routerLink]="['/demande-solde']" routerLinkActive="active">Demande de solde</a>
+      </nav>
+      
+      <button class="btn-sign-in"></button>
+    </header>
+    <section class="hero">
+       <router-outlet></router-outlet>
+    </section>
+  </div>
+   

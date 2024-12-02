@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
 import {
-  ParticleComponentComponent,
-} from '../../shared/components/particle-component/particle-component.component';
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
 
 @Component({
   selector: 'app-accueil',
   standalone: true,
-  imports: [RouterOutlet, ParticleComponentComponent],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.scss'
 })
 export class AccueilComponent {
-
+ 
 }

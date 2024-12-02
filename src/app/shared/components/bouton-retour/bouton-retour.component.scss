@@ -1,0 +1,28 @@
+.btn-retour {
+    padding: 10px 20px;
+    border: 1px solid #AD9961;
+    background-color: transparent;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #AD9961;
+    cursor: pointer;
+    font-size: 1.2rem;
+    // je veux que le bouton soit plus aligne avec les autres boutons
+    margin-right: 10px;
+    &:hover {
+        background-color: #AD9961;
+        color: white;
+        .btn-retour i {
+            color: white;
+        }
+    }
+  }
+
+.btn-retour i {
+    margin-right: 10px;
+    font-size: large;
+    color: #AD9961;
+    &:hover {
+        color: white;
+    }
+}

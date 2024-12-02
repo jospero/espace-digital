@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { AccueilComponent } from './models/accueil/accueil.component';
+import { AccueilComponent } from './modules/accueil/accueil.component';
 
 export const routes: Routes = [
     {
@@ -8,7 +8,7 @@ export const routes: Routes = [
         component: AccueilComponent, children : [
             {
                 path: '',
-                loadChildren: () => import('./models/accueil/accueil.route').then(m => m.routes)
+                loadChildren: () => import('./modules/accueil/accueil.route').then(m => m.routes)
             }
         ]
         

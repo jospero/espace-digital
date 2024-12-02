@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -12,10 +11,17 @@ import { MenuModule } from 'primeng/menu';
 import { StepperModule } from 'primeng/stepper';
 import { StepsModule } from 'primeng/steps';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-import { Subscription } from 'rxjs';
+
+import {
+  BoutonRetourComponent,
+} from '../../shared/components/bouton-retour/bouton-retour.component';
+import { CompteModel } from '../../shared/models/compte.model';
+import {
+  DemandeSoldeService,
+} from '../../shared/services/demande-solde/demande-solde.service';
 
 @Component({
-  selector: 'app-creation-compte',
+  selector: 'app-demande-solde',
   standalone: true,
   imports: [
     StepsModule,
@@ -28,25 +34,24 @@ import { Subscription } from 'rxjs';
     CommonModule,
     InputNumberModule,
     FormsModule,
-    MenuModule
+    MenuModule,
+    BoutonRetourComponent
+
   ],
-  templateUrl: './creation-compte.component.html',
-  styleUrl: './creation-compte.component.scss'
+  templateUrl: './demande-solde.component.html',
+  styleUrl: './demande-solde.component.scss',
+  providers: [
+    DemandeSoldeService
+  ]
 })
-export class CreationCompteComponent {
-  items: MenuItem[] = [];
-  subscription: Subscription = new Subscription();
+export class DemandeSoldeComponent {
+  
   active: number = 0;
 
-  ngOnInit(): void {
-    this.items = [
-      { label: 'Informations personnelles', routerLink: 'personal-information' },
-      { label: 'Documents', routerLink: 'documents' },
-      { label: 'Confirmation', routerLink: 'confirmation' },  
-    ];
-  }
+  compte: CompteModel = new CompteModel();
+  demandeSoldeService: DemandeSoldeService = new DemandeSoldeService(this.compte);
 
-  nextCallback() {
-    this.active++;
-  } 
+  demandeSolde() {
+    return this.demandeSoldeService.demandeSolde();
+  }
 }
