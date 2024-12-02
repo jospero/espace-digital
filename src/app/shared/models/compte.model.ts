@@ -5,6 +5,7 @@ export class CompteModel {
     numero!: string;
     solde!: number;
     client!: ClientModel;
+    statut!: string;
     creationCompte(this: CompteModel) {
         return this;
     }

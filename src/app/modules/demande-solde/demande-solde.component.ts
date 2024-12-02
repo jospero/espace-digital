@@ -47,7 +47,8 @@ import {
 export class DemandeSoldeComponent {
   
   active: number = 0;
-
+  telephone!: string;
+  codeOtp!: string;
   compte: CompteModel = new CompteModel();
   demandeSoldeService: DemandeSoldeService = new DemandeSoldeService(this.compte);
 
