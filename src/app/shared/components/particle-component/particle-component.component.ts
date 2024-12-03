@@ -13,6 +13,10 @@ import {
   OutMode,
 } from 'tsparticles-engine';
 
+import {
+  CommunicationComposantService,
+} from '../../services/communication-composant/communication-composant.service';
+
 @Component({
   selector: 'app-particle-composant',
   standalone: true,
@@ -43,7 +47,7 @@ import {
 })
 export class ParticleComponent implements OnInit {
   id = "tsparticles-deux";
- 
+  engine: Engine | undefined;
   particlesOptions = {
     background: {
       color: {
@@ -54,7 +58,7 @@ export class ParticleComponent implements OnInit {
     interactivity: {
       events: {
         onClick: {
-          enable: true,
+          enable: false,
           mode: ClickMode.push,
         },
         onHover: {
@@ -114,9 +118,22 @@ export class ParticleComponent implements OnInit {
     detectRetina: true,
   };
 
-  constructor() { }
+  constructor( private communicationComposantService: CommunicationComposantService) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.communicationComposantService.bLoaded$.subscribe((bLoaded) => {
+      if(bLoaded) {
+        this.reloadParticles();
+      }
+    });
+  }
+  
+  reloadParticles() {
+   if(this.engine) {
+      
+      this.engine.refresh();
+    }
+  }
 
   async particlesInit(engine: Engine): Promise<void> {
     await loadFull(engine);

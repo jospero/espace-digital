@@ -1,43 +1,45 @@
 <div class="card p-4">             
     <p-stepper [(activeStep)]="active" >   
-    <p-stepperPanel>
-        <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
-            <p-button icon="pi pi-user" [rounded]="true" class="bg-transparent border-none inline-flex flex-column gap-2" (click)="onClick.emit()">
-            </p-button>
-        </ng-template>
-       <ng-template pTemplate="content" let-nextCallback="nextCallback">
-            <div class="">
-                <div class="mt-3 mb-3 text-xl font-semibold stepper-text-titre">
-                    <i class="pi pi-user stepper-text-titre-icon"></i>   Informations personnelles
+        <p-stepperPanel>
+            <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
+                <p-button icon="pi pi-user" [rounded]="true" class="bg-transparent border-none inline-flex flex-column gap-2" (click)="onClick.emit()">
+                </p-button>
+            </ng-template>
+            <ng-template pTemplate="content" let-nextCallback="nextCallback">
+                <div>
+                    <div class="mt-3 mb-3 text-xl font-semibold stepper-text-titre">
+                        <i class="pi pi-user stepper-text-titre-icon"></i> Informations personnelles
+                    </div>
+                    <div class="formgrid grid">
+                        <div class="field col">
+                            <label for="nom">Nom</label>
+                            <input id="nom" type="text" required [(ngModel)]="client.nom" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                            <small *ngIf="!client.nom && showValidationErrors" class="text-red-500">Ce champ est obligatoire.</small>
+                        </div>
+                        <div class="field col">
+                            <label for="prenom">Prénom</label>
+                            <input id="prenom" type="text" required [(ngModel)]="client.prenom" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                            <small *ngIf="!client.prenom && showValidationErrors" class="text-red-500">Ce champ est obligatoire.</small>
+                        </div>
+                    </div>
+                    <div class="formgrid grid">
+                        <div class="field col">
+                            <label for="telephone">Téléphone</label>
+                            <input id="telephone" type="tel" minlength="10" maxlength="10" [(ngModel)]="client.telephone" required class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                            <small *ngIf="!client.telephone && showValidationErrors" class="text-red-500">Ce champ est obligatoire.</small>
+                        </div>
+                        <div class="field col">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" required [(ngModel)]="client.email" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                            <small *ngIf="!client.email && showValidationErrors" class="text-red-500">Ce champ est obligatoire.</small>
+                        </div>
+                    </div>
                 </div>
-                <div class="formgrid grid">
-                    <div class="field col">
-                        <label for="firstname2">Nom</label>
-                        <input id="firstname2" type="text" [(ngModel)]="client.nom" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-                    </div>
-                    <div class="field col">
-                        <label for="lastname2">Prénom</label>
-                        <input id="lastname2" type="text" [(ngModel)]="client.prenom" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-                    </div>
+                <div class="flex pt-4 justify-content-end">
+                    <p-button (onClick)="validateStep1(nextCallback)" label="Suivant" icon="pi pi-arrow-right" iconPos="right" class="p-button-rounded"></p-button>
                 </div>
-                <div class="formgrid grid">
-                    <div class="field col">
-                        <label for="firstname2">Téléphone</label>
-                        <input id="firstname2" type="text" [(ngModel)]="client.telephone" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-                    </div>
-                    <div class="field col">
-                        <label for="lastname2">Email</label>
-                        <input id="lastname2" type="text" [(ngModel)]="client.email" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex pt-4 justify-content-end">
-                <p-button (onClick)="nextCallback.emit()" label="Suivant" icon="pi pi-arrow-right" iconPos="right" class="p-button-rounded"></p-button>
-            </div>
-        </ng-template>
-    </p-stepperPanel> 
-
+            </ng-template>
+        </p-stepperPanel>
 
     <p-stepperPanel>
         <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
@@ -49,34 +51,38 @@
         </ng-template>
        <ng-template pTemplate="content" let-nextCallback="nextCallback" let-prevCallback="prevCallback">
             <div class="gap-4">
-                <div class="mt-3 mb-3 text-2xl font-semibold stepper-text-titre">
+                <div class="mt-3 mb-3 text-xl font-semibold stepper-text-titre">
                     <i class="pi pi-briefcase stepper-text-titre-icon"></i> Activités professionnelles
                 </div>
                 <div class="formgrid grid">
                     <div class="field col">
-                        <label for="firstname2">Profession</label>
-                        <input id="firstname2" type="text" [(ngModel)]="client.profession" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <label for="profession">Profession</label>
+                        <input id="profession" required type="text" [(ngModel)]="client.profession" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <small *ngIf="!client.profession && showValidationErrors" class="text-red-500">Ce champ est obligatoire.</small>
                     </div>
                     <div class="field col">
-                        <label for="lastname2">Entreprise</label>
-                        <input id="lastname2" type="text" [(ngModel)]="client.entreprise" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <label for="entreprise">Entreprise</label>
+                        <input id="entreprise" required type="text" [(ngModel)]="client.entreprise" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <small *ngIf="!client.entreprise && showValidationErrors" class="text-red-500">Ce champ est obligatoire.</small>
                     </div>
                 </div>
                 <div class="formgrid grid">
                     <div class="field col">
-                        <label for="firstname2">Revenu mensuel</label>
-                        <input id="firstname2" type="text" [(ngModel)]="client.revenuMensuel" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <label for="revenuMensuel">Revenu mensuel</label>
+                        <input id="revenuMensuel" required type="number" pattern="[0-9]*"  [(ngModel)]="client.revenuMensuel" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <small *ngIf="!client.revenuMensuel && showValidationErrors" class="text-red-500">Ce champ est obligatoire.</small>
                     </div>
                     <div class="field col">
-                        <label for="lastname2">Secteur d'activité</label>
-                        <input id="lastname2" type="text" [(ngModel)]="client.secteurActivite" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <label for="secteurActivite">Secteur d'activité</label>
+                        <input id="secteurActivite" required type="text"  [(ngModel)]="client.secteurActivite" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <small *ngIf="!client.secteurActivite && showValidationErrors" class="text-red-500">Ce champ est obligatoire.</small>   
                     </div>
                 </div>
             </div>
 
             <div class="flex pt-4 gap-2 justify-content-end align-items-center">
                 <app-bouton-retour (prevCallback)="prevCallback.emit()"></app-bouton-retour>
-                <p-button (onClick)="nextCallback.emit()" label="Suivant" icon="pi pi-arrow-right" iconPos="right" class="p-button-rounded p-button-success"></p-button>
+                <p-button (onClick)="validateStep2(nextCallback)" label="Suivant" icon="pi pi-arrow-right" iconPos="right" class="p-button-rounded p-button-success"></p-button>
             </div>
         </ng-template>
     </p-stepperPanel> 
@@ -94,18 +100,18 @@
                 <div class="mt-3 mb-3 text-2xl font-semibold stepper-text-titre"><i class="pi pi-file stepper-text-titre-icon"></i> Résumé des informations</div>
                 <div class="card grid justify-content-between">
                     <div class="md:col-5">
-                        <div class="text-md font-semibold">Informations personnelles</div>
-                        <div class="text-sm">Nom : {{client.nom}}</div>
-                        <div class="text-sm">Prénom : {{client.prenom}}</div>
-                        <div class="text-sm">Téléphone : {{client.telephone}}</div>
-                        <div class="text-sm">Email : {{client.email}}</div>
+                        <div class="text-lg font-semibold">Informations personnelles</div>
+                        <div class="text-md mt-2">Nom : {{client.nom}}</div>
+                        <div class="text-md mt-2">Prénom : {{client.prenom}}</div>
+                        <div class="text-md mt-2">Téléphone : {{client.telephone}}</div>
+                        <div class="text-md mt-2">Email : {{client.email}}</div>
                     </div>
                     <div class="md:col-5">
-                        <div class="text-md font-semibold">Activités professionnelles</div>
-                        <div class="text-sm">Profession : {{client.profession}}</div>
-                        <div class="text-sm">Entreprise : {{client.entreprise}}</div>
-                        <div class="text-sm">Revenu mensuel : {{client.revenuMensuel}}</div>
-                        <div class="text-sm">Secteur d'activité : {{client.secteurActivite}}</div>
+                        <div class="text-lg font-semibold">Activités professionnelles</div>
+                        <div class="text-md mt-2">Profession : {{client.profession}}</div>
+                        <div class="text-md mt-2">Entreprise : {{client.entreprise}}</div>
+                        <div class="text-md mt-2">Revenu mensuel : {{client.revenuMensuel}}</div>
+                        <div class="text-md mt-2">Secteur d'activité : {{client.secteurActivite}}</div>
                     </div>
                 </div>
             </div>

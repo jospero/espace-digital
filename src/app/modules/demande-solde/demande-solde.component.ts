@@ -15,6 +15,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import {
   BoutonRetourComponent,
 } from '../../shared/components/bouton-retour/bouton-retour.component';
+import { ClientModel } from '../../shared/models/client.model';
 import { CompteModel } from '../../shared/models/compte.model';
 import {
   DemandeSoldeService,
@@ -49,10 +50,33 @@ export class DemandeSoldeComponent {
   active: number = 0;
   telephone!: string;
   codeOtp!: string;
-  compte: CompteModel = new CompteModel();
+  showValidationErrors = false;
+  client: ClientModel = new ClientModel();
+  compte: CompteModel = new CompteModel(
+  "1234567890",
+  1000,
+  new ClientModel(),
+  "Actif"
+  );
   demandeSoldeService: DemandeSoldeService = new DemandeSoldeService(this.compte);
 
   demandeSolde() {
     return this.demandeSoldeService.demandeSolde();
+  }
+
+  validateStep1(nextCallback: any): void {
+    this.showValidationErrors = true;
+    if (this.telephone) {
+      this.showValidationErrors = false;
+      nextCallback.emit();
+    }
+  } 
+
+  validateStep2(nextCallback: any): void {
+    this.showValidationErrors = true;
+    if (this.codeOtp) {
+      this.showValidationErrors = false;
+      nextCallback.emit();
+    }
   }
 }

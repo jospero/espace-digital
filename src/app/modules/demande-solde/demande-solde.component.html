@@ -12,15 +12,16 @@
                 </div>
                 <div class="formgrid grid">
                     <div class="field col-12">
-                        <label for="firstname2">Entrer votre numero de telephone</label>
-                        <input id="firstname2" type="text" [(ngModel)]="telephone" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <label for="telephone">Entrer votre numero de telephone</label>
+                        <input id="telephone" required type="text"  [(ngModel)]="telephone" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <small *ngIf="!telephone && showValidationErrors" class="text-red-500">Ce champ est obligatoire.</small>
                     </div>    
                 </div>
                 
             </div>
 
             <div class="flex pt-1 justify-content-end">
-                <p-button (onClick)="nextCallback.emit()" label="Suivant" icon="pi pi-arrow-right" iconPos="right" class="p-button-rounded"></p-button>
+                <p-button (onClick)="validateStep1(nextCallback)" label="Suivant" icon="pi pi-arrow-right" iconPos="right" class="p-button-rounded"></p-button>
             </div>
         </ng-template>
     </p-stepperPanel> 
@@ -41,8 +42,9 @@
                 </div>
                 <div class="formgrid grid">
                     <div class="field col-12">
-                        <label for="firstname2">Entrer le code de verification</label>
-                        <input id="firstname2" type="text" [(ngModel)]="codeOtp" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <label for="codeOtp">Entrer le code de verification</label>
+                        <input id="codeOtp" required type="text" [(ngModel)]="codeOtp" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <small *ngIf="!codeOtp && showValidationErrors" class="text-red-500">Ce champ est obligatoire.</small>
                     </div>
 
                 </div>
@@ -51,7 +53,7 @@
 
             <div class="flex pt-4 gap-2 justify-content-end align-items-center">
                 <app-bouton-retour (prevCallback)="prevCallback.emit()"></app-bouton-retour>
-                <p-button (onClick)="nextCallback.emit()" label="Suivant" icon="pi pi-arrow-right" iconPos="right" class="p-button-rounded p-button-success"></p-button>
+                <p-button (onClick)="validateStep2(nextCallback)" label="Suivant" icon="pi pi-arrow-right" iconPos="right" class="p-button-rounded p-button-success"></p-button>
             </div>
         </ng-template>
     </p-stepperPanel> 
@@ -67,7 +69,7 @@
         <ng-template pTemplate="content" let-nextCallback="nextCallback" let-prevCallback="prevCallback">
             <div class="flex flex-column gap-4">
                 <div class="mt-3 mb-3 text-2xl font-semibold stepper-text-titre"><i class="pi pi-wallet stepper-text-titre-icon"></i> Informations du compte</div>
-                <div class="text-sm text-primary-button font-semibold">Solde demandé : {{compte.solde}} Fcfa</div>
+                <div class="text-md text-primary-button font-semibold">Votre solde est de : {{compte.solde}} Fcfa</div>
                 <div class="card grid justify-content-between">
                     <div class="md:col-5">
                         <div class="text-md font-semibold">Dernières transactions</div>
@@ -77,7 +79,7 @@
                     </div>
                     <div class="md:col-5">
                         <div class="text-md font-semibold">Statut du compte</div>
-                        <div class="text-sm">Profession : </div>
+                        <div class="text-sm"> {{compte.statut}}</div>
                         
                     </div>
                 </div>
