@@ -14,6 +14,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { MenuModule } from 'primeng/menu';
 import { StepperModule } from 'primeng/stepper';
 import { ToggleButtonModule } from 'primeng/togglebutton';
+import { DialogModule } from 'primeng/dialog';
 
 import {
   BoutonRetourComponent,
@@ -42,6 +43,7 @@ import {
     InputNumberModule ,
     KeyFilterModule,
     ReactiveFormsModule,
+    DialogModule,
     
     
   ],
@@ -52,6 +54,7 @@ import {
   ] ,
 })
 export class CreationCompteComponent {
+  visible: boolean = false;
   active: number = 0;
   client: ClientModel = new ClientModel();
   showValidationErrors = false;
@@ -75,6 +78,12 @@ validateStep2(nextCallback: any): void {
       this.showValidationErrors = false;
       nextCallback.emit();
   }
+
+  
+}
+
+showDialog() {
+  this.visible = true;
 }
  
  

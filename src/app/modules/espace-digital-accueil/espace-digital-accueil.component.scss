@@ -83,6 +83,13 @@
     border-radius: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
+
+  .qr-img {
+    width: 100px;
+    height: auto; /* Augmentation de la hauteur */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+  }
   
   /* Payroll Summary Card */
   .payroll-card {

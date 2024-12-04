@@ -42,6 +42,7 @@
     text-decoration: none;
     color: #333;
     font-weight: 500;
+    margin-right: 10 px;
   }
 
   
@@ -69,3 +70,53 @@
     color: #007bff;
     border-bottom: 2px solid #AD9961;
   }
+
+  /* General styles for smaller screens */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack items vertically */
+    padding: 10px 0;
+  }
+
+  .logo img {
+    width: 40px; /* Adjust logo size */
+    height: 40px;
+  }
+
+  .navbar nav {
+    flex-direction: column; /* Stack links vertically */
+    gap: 10px;
+    align-items: center;
+  }
+
+  .navbar nav a {
+    font-size: 14px; /* Adjust link size */
+    margin-right: 10; /* Remove margin */
+  }
+
+  .btn-sign-in {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
+
+/* Extra small screens (mobile) */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 5px 0;
+  }
+
+  .logo img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .navbar nav a {
+    font-size: 12px; /* Smaller font size */
+  }
+
+  .btn-sign-in {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}

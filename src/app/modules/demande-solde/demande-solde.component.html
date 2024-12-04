@@ -87,7 +87,7 @@
 
             <div class="flex pt-4 gap-2 justify-content-end align-items-center  ">
                 <app-bouton-retour (prevCallback)="prevCallback.emit()"></app-bouton-retour>
-                <p-button (onClick)="nextCallback.emit()" label="Valider" icon="pi pi-check" iconPos="right" class="p-button-rounded p-button-success"></p-button>
+                <p-button [routerLink]="['/']" label="Valider" icon="pi pi-check" iconPos="right" class="p-button-rounded p-button-success"></p-button>
             </div>
         </ng-template>
     </p-stepperPanel>
